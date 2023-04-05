@@ -45,6 +45,20 @@ app.use(
 
 app.use(express.json());
 
+// CORS settings
+const allowedOrigins = ['http://localhost:3001', 'https://example.com'];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
+
 const api = require('./src/api');
 
 app.use(api);
