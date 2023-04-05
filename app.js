@@ -8,9 +8,6 @@ const app = express();
 
 app.set('trust proxy', 'loopback');
 
-// cors
-app.use(cors());
-
 if (process.env.ENVIRONMENT !== 'test') {
   // logger
   app.use(
@@ -45,22 +42,14 @@ app.use(
 
 app.use(express.json());
 
-// CORS settings
-const allowedOrigins = ['http://localhost:3001', 'https://example.com', 'http://localhost:3000'];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
+// Define CORS settings for /horoscope endpoint only
+const horoscopeCorsOptions = {
+  origin: 'http://localhost:3000'
 };
-
-app.use(cors(corsOptions));
 
 const api = require('./src/api');
 
-app.use(api);
+// Apply CORS middleware only to /horoscope endpoint
+app.use('/horoscope', cors(horoscopeCorsOptions), api);
 
 module.exports = app;
