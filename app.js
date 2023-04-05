@@ -46,7 +46,7 @@ app.use(
 app.use(express.json());
 
 // CORS settings
-const allowedOrigins = ['http://localhost:3001', 'https://example.com'];
+const allowedOrigins = ['http://localhost:3001', 'https://example.com', 'http://localhost:3000'];
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigins.indexOf(origin) !== -1) {
