@@ -19,10 +19,10 @@ app.get("/horoscope", async (req, res) => {
   const date = new Date(req.query.time);
   const { latitude, longitude, houseSystem } = req.query;
 
-  const chart = astrologer.natalChart(date, latitude, longitude, houseSystem);
+  // const chart = astrologer.natalChart(date, latitude, longitude, houseSystem);
 
   res.status(200).json({
-    data: chart,
+    data: "chart",
   });
 });
 
