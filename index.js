@@ -26,9 +26,9 @@ res.send(`Hey this is my API running, on port ${PORT}`)
 //   });
 // });
 
-// app.get("/example", async (req, res) => {
-//   res.status(200).json({ message: "This is an example route" });
-// });
+app.get("/example", async (req, res) => {
+  res.status(200).json({ message: "This is an example route" });
+});
 
 
 app.listen(PORT, () => {
