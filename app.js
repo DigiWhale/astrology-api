@@ -6,7 +6,7 @@ const featurePolicy = require('feature-policy');
 
 const app = express();
 
-app.set('trust proxy', 'loopback');
+// app.set('trust proxy', 'loopback');
 
 // if (process.env.ENVIRONMENT !== 'test') {
 //   // logger

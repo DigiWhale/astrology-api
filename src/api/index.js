@@ -4,6 +4,10 @@ const cors = require('cors')
 
 const router = new Router()
 
+router.use(cors({
+  origin: ['http://localhost:3000', 'https://example.com', 'https://themythicalfairy.com', 'http://www.themythicalfairy.com']
+}))
+
 router.get('/', async (req, res) => res.status(200).json({ message: 'Welcome to Astrology api!' }))
 
 router.get('/horoscope', async (req, res) => {
