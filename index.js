@@ -1,36 +1,75 @@
-const express = require('express');
-const cors = require('cors');
-const astrologer = require('./src/astrologer');
+/* eslint-disable no-console */
+const http = require('http')
+const app = require('./app')
 
-const app = express();
-const PORT = process.env.PORT || 3001;
+/**
+ * Create HTTP server.
+ */
+const server = http.createServer(app)
 
-app.use(cors());
-// app.use(express.json())cvxv
+/**
+ * Normalize a port into a number, string, or false.
+ */
+const normalizePort = (val) => {
+  const numericPort = parseInt(val, 10)
 
-// const api = require("./src/api");
-// app.use(api);
+  // eslint-disable-next-line no-restricted-globals
+  if (isNaN(numericPort)) {
+    // named pipe
+    return val
+  }
 
-app.get("/", async (req, res) =>
-res.send(`Hey this is my API running, on port ${PORT}`)
-);
+  if (numericPort >= 0) {
+    // port number
+    return numericPort
+  }
 
-app.get("/horoscope", async (req, res) => {
-  const date = new Date(req.query.time);
-  const { latitude, longitude, houseSystem } = req.query;
+  return false
+}
 
-  const chart = astrologer.natalChart(date, latitude, longitude, houseSystem);
+/**
+ * Get port from environment and store in Express.
+ */
+const port = normalizePort(process.env.PORT || '3000')
+app.set('port', port)
 
-  res.status(200).json({
-    data: chart,
-  });
-});
+/**
+ * Event listener for HTTP server "error" event.
+ */
+const onError = (error) => {
+  if (error.syscall !== 'listen') {
+    throw error
+  }
 
-app.get("/example", async (req, res) => {
-  res.status(200).json({ message: "This is an example route" });
-});
+  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`
 
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(`${bind} requires elevated privileges`)
+      process.exit(1)
+      break
+    case 'EADDRINUSE':
+      console.error(`${bind} is already in use`)
+      process.exit(1)
+      break
+    default:
+      throw error
+  }
+}
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+const onListening = () => {
+  const addr = server.address()
+  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`
+  console.log(`Listening on ${bind}`)
+}
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port)
+server.on('error', onError)
+server.on('listening', onListening)
