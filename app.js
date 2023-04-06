@@ -42,14 +42,23 @@ app.use(
 
 app.use(express.json());
 
-// Define CORS settings for /horoscope endpoint only
-const horoscopeCorsOptions = {
-  origin: 'http://localhost:3000'
+const allowedOrigins = ['http://localhost:3000', 'https://example.com'];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 };
+
+app.use(cors(corsOptions));
+
+app.use(cors(corsOptions));
 
 const api = require('./src/api');
 
-// Apply CORS middleware only to /horoscope endpoint
-app.use('/horoscope', cors(horoscopeCorsOptions), api);
+app.use(api);
 
 module.exports = app;
