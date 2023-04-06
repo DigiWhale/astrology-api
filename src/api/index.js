@@ -21,6 +21,10 @@ router.get('/horoscope', async (req, res) => {
   })
 })
 
+router.get('/example', async (req, res) => {
+  res.status(200).json({ message: 'This is an example route' })
+})
+
 router.get('*', async (req, res) => res.status(404).json({ message: 'Not found' }))
 
 
