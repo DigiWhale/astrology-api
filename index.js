@@ -13,7 +13,7 @@ app.use(express.json());
 // app.use(api);
 
 app.get("/", async (req, res) =>
-  res.status(200).json({ message: "Welcome to Astrology api!" })
+res.send(`Hey this is my API running, on port ${PORT}`)
 );
 
 app.get("/horoscope", async (req, res) => {
