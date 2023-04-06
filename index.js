@@ -1,7 +1,10 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 // const axios = require('axios');
-const request = require('request');
+const request = require("request");
+const Router = require("express-promise-router");
+const astrologer = require("./src/astrologer");
+// const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -27,12 +30,41 @@ app.use(express.json());
 
 // app.use(cors(corsOptions));
 
-const api = require('./src/api');
+const api = require("./src/api");
 
 app.use(api);
 
-module.exports = app;
+// module.exports = app;
 
+
+// router.use(cors({
+//   origin: ['http://localhost:3000', 'https://example.com', 'https://themythicalfairy.com', 'http://www.themythicalfairy.com']
+// }))
+
+app.get("/", async (req, res) =>
+  res.status(200).json({ message: "Welcome to Astrology api!" })
+);
+
+app.get("/horoscope", async (req, res) => {
+  const date = new Date(req.query.time);
+  const { latitude, longitude, houseSystem } = req.query;
+
+  const chart = astrologer.natalChart(date, latitude, longitude, houseSystem);
+
+  res.status(200).json({
+    data: chart,
+  });
+});
+
+app.get("/example", async (req, res) => {
+  res.status(200).json({ message: "This is an example route" });
+});
+
+app.get("*", async (req, res) =>
+  res.status(404).json({ message: "Not found" })
+);
+
+// module.exports = router;
 // /* eslint-disable no-console */
 // const http = require('http')
 // const app = require('./app')
