@@ -1,7 +1,6 @@
 const sweph = require('sweph')
-const path = require('path')
 
-sweph.set_ephe_path(path.join(__dirname, '../eph'))
+sweph.set_ephe_path('../eph');
 
 const utcToJulianUt = (utcDate) => {
   const milliSecondsInSeconds = utcDate.getUTCMilliseconds() / 1000

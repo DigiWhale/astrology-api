@@ -1,8 +1,7 @@
 const sweph = require('sweph')
 const { utcToJulianEt, zodiacSign, degreesToDms } = require('./utils')
-const path = require('path')
 
-sweph.set_ephe_path(path.join(__dirname, '../eph'))
+sweph.set_ephe_path('../eph');
 
 const {
   SE_SUN,
