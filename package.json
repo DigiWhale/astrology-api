@@ -8,10 +8,10 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "express-promise-router": "^4.1.1",
-    "path": "^0.12.7",
-    "sweph": "^2.10.0-5"
+    "cors": "latest",
+    "express": "latest",
+    "express-promise-router": "latest",
+    "path": "latest",
+    "sweph": "latest"
   }
 }
