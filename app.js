@@ -8,52 +8,52 @@ const app = express();
 
 app.set('trust proxy', 'loopback');
 
-if (process.env.ENVIRONMENT !== 'test') {
-  // logger
-  app.use(
-    morgan(
-      '[:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]'
-    )
-  );
-}
+// if (process.env.ENVIRONMENT !== 'test') {
+//   // logger
+//   app.use(
+//     morgan(
+//       '[:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]'
+//     )
+//   );
+// }
 
 // helmet configurations
-app.use(helmet());
+// app.use(helmet());
 
-app.use(helmet.referrerPolicy());
+// app.use(helmet.referrerPolicy());
 
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"]
-    }
-  })
-);
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'"]
+//     }
+//   })
+// );
 
-app.use(
-  featurePolicy({
-    features: {
-      fullscreen: ["'self'"],
-      vibrate: ["'none'"],
-      syncXhr: ["'none'"]
-    }
-  })
-);
+// app.use(
+//   featurePolicy({
+//     features: {
+//       fullscreen: ["'self'"],
+//       vibrate: ["'none'"],
+//       syncXhr: ["'none'"]
+//     }
+//   })
+// );
 
 app.use(express.json());
 
-const allowedOrigins = ['http://localhost:3000', 'https://example.com', 'https://localhost:3000', 'https://themythicalfairy.com', 'http://www.themythicalfairy.com'];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-};
+// const allowedOrigins = ['http://localhost:3000', 'https://example.com', 'https://localhost:3000', 'https://themythicalfairy.com', 'http://www.themythicalfairy.com'];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (allowedOrigins.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 const api = require('./src/api');
 
