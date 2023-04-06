@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const Router = require("express-promise-router");
 const astrologer = require("./src/astrologer");
 
 const app = express();
@@ -31,9 +30,6 @@ app.get("/example", async (req, res) => {
   res.status(200).json({ message: "This is an example route" });
 });
 
-app.get("*", async (req, res) =>
-  res.status(404).json({ message: "Not found" })
-);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
