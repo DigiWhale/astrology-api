@@ -15,13 +15,18 @@ app.get('/example', (req, res) => {
 })
 
 app.get('/horoscope', (req, res) => {
-  const date = new Date(req.query.time)
-  const { latitude, longitude, houseSystem } = req.query
+  const date = req.query.time ? new Date(req.query.time) : new Date()
+  const latitude = req.query.latitude ? req.query.latitude : 0
+  const longitude = req.query.longitude ? req.query.longitude : 0
+  const houseSystem = req.query.houseSystem ? req.query.houseSystem : 'P'
+
   const chart = astrologer.natalChart(date, latitude, longitude, houseSystem)
+
   res.status(200).json({
     data: chart
   })
 })
+
 
 const port = process.env.PORT || 3001
 
