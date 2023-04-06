@@ -21,4 +21,7 @@ router.get('/horoscope', async (req, res) => {
   })
 })
 
+router.get('*', async (req, res) => res.status(404).json({ message: 'Not found' }))
+
+
 module.exports = router
