@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-// const astrologer = require('./src/astrologer');
+const astrologer = require('./src/astrologer');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
