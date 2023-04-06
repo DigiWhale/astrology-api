@@ -42,7 +42,7 @@ app.use(
 
 app.use(express.json());
 
-const allowedOrigins = ['http://localhost:3000', 'https://example.com'];
+const allowedOrigins = ['http://localhost:3000', 'https://example.com', 'https://localhost:3000', 'https://themythicalfairy.com', 'http://www.themythicalfairy.com'];
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigins.indexOf(origin) !== -1) {
@@ -52,8 +52,6 @@ const corsOptions = {
     }
   }
 };
-
-app.use(cors(corsOptions));
 
 app.use(cors(corsOptions));
 
