@@ -1,7 +1,7 @@
 const sweph = require('sweph')
 const path = require('path')
 
-sweph.set_ephe_path(path.join(__dirname, '/../../eph'))
+sweph.set_ephe_path(path.join(__dirname, '../eph'))
 
 const { utcToJulianUt, degreesToDms, zodiacSign } = require('./utils')
 
