@@ -1,6 +1,6 @@
 {
   "name": "astrology_api",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "path": "^0.12.7",
     "sweph": "^2.10.3-2"
   }
 }
