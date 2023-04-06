@@ -3,7 +3,6 @@
   "version": "1.3.0",
   "description": "Api para el calculos astrologicos",
   "main": "index.js",
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
@@ -29,6 +28,7 @@
     "express-promise-router": "^3.0.3",
     "helmet": "^3.21.3",
     "morgan": "^1.9.1",
+    "react-scripts": "^5.0.1",
     "sweph": "^2.10.0-5"
   }
 }
