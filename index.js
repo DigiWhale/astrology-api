@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const astrologer = require('./src/astrologer');
+// const astrologer = require('./src/astrologer');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -16,7 +16,7 @@ res.send(`Hey this is my API running, on port ${PORT}`)
 );
 
 app.get("/horoscope", async (req, res) => {
-  const date = new Date(req.query.time);
+  // const date = new Date(req.query.time);
   const { latitude, longitude, houseSystem } = req.query;
 
   // const chart = astrologer.natalChart(date, latitude, longitude, houseSystem);
